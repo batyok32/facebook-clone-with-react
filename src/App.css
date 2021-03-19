@@ -1,0 +1,14 @@
+.app {
+  background-color: #f1f2f5;
+  /* height: 100v h; */
+}
+.app__body {
+  display: flex;
+}
+
+@media only screen and (max-width: 910px) {
+  .app__body {
+    display: flex;
+    flex-direction: column;
+  }
+}

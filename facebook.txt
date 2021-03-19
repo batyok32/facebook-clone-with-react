@@ -1,0 +1,177 @@
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="/__/firebase/8.2.9/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="/__/firebase/8.2.9/firebase-analytics.js"></script>
+
+<!-- Initialize Firebase -->
+<script src="/__/firebase/init.js"></script>
+
+
+# facebook clone
+create react app
+create firebase app
+
+
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyDho_ZaV0Dtpnd9mXEv1vyxHQpynpNMVZE",
+  authDomain: "facebook-clone-batyr.firebaseapp.com",
+  projectId: "facebook-clone-batyr",
+  storageBucket: "facebook-clone-batyr.appspot.com",
+  messagingSenderId: "772866712303",
+  appId: "1:772866712303:web:9c3d98a024c805a15af11a",
+  measurementId: "G-S0ZRZ1TLV6"
+};
+
+divide everything in components
+header sidebar app body
+create header.js
+
+using google login
+go to firebase firestore enble it
+npm i firebase
+set firebase.js
+import firebase from "firebase";
+
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+    apiKey: "AIzaSyDho_ZaV0Dtpnd9mXEv1vyxHQpynpNMVZE",
+    authDomain: "facebook-clone-batyr.firebaseapp.com",
+    projectId: "facebook-clone-batyr",
+    storageBucket: "facebook-clone-batyr.appspot.com",
+    messagingSenderId: "772866712303",
+    appId: "1:772866712303:web:9c3d98a024c805a15af11a",
+    measurementId: "G-S0ZRZ1TLV6"
+};
+
+const firebaseApp=firebase.initializeApp(firebaseConfig);
+const db = firebaseApp.firestore();
+
+const auth = firebase.auth();
+const provider = new firebase.auth.GoogleAuthProvider();
+
+export {auth, provider};
+export default db;
+
+go to app js and modify it like 
+{!user ? 
+  (<Login />) 
+  : 
+  (<div className=""><Header />...)
+
+go to loginjs
+
+const signIn = () => {
+  auth
+  .signInWithPopup(provider)
+  .then((result) => {
+      console.log(result.user);
+  }).catch(error => alert(error.message))
+}
+and make button which onclick will signIn
+
+LIKES
+
+const onLikePress = (userId, postId) => {
+  conts userPosts = firebase.firestore()
+                            .collection("posts")
+                            .doc(userId)
+                            .collection("userPosts")
+                            .doc(postId);
+      
+  userPosts.collection("likes")
+           .doc(firebase.auth().currentUser.uid)
+           .set({})
+           .then(() => {
+               userPosts.update({
+                   likesCont: firebase.firestore.FieldValue.increment(1)
+               });
+           })
+}
+
+const onDislikePress = (userId, postId) => {
+  conts userPosts = firebase.firestore()
+                          .collection("posts")
+                          .doc(userId)
+                          .collection("userPosts")
+                          .doc(postId);
+      
+  userPosts.collection("likes")
+           .doc(firebase.auth().currentUser.uid)
+           .delete()
+           .then(() => {
+               userPosts.update({
+                   likesCont: firebase.firestore.FieldValue.increment(-1)
+               });
+           })
+}
+
+<View style={{flexDirection:"row" , justifyContent:"space-around" , marginTop:4}}>
+                      { item.currentUserLike ?
+                          (
+                              <TouchableNativeFeedback 
+                              onPress={() => onDislikePress(item.user.uid, item.id)}
+                              >
+                                  <MaterialCommunityIcons name="heart" size={24} color="blue" />
+                              </TouchableNativeFeedback>
+                          )
+                          :
+                          (
+                              <TouchableNativeFeedback 
+                              onPress={() => onLikePress(item.user.uid, item.id)} 
+                              >
+                                  <MaterialCommunityIcons name="heart-outline" size={24} color="black" />
+                              </TouchableNativeFeedback>
+                            
+                          )
+                      }
+                      <TouchableOpacity  onPress={() => props.navigation.navigate('Comment', { postId: item.id, uid: item.user.uid })}>
+                           <MaterialCommunityIcons name="comment-text-outline" size={24} color="black" />
+                      </TouchableOpacity>
+
+                          <TouchableOpacity onPress={ () => onShare (item.downloadURL)}>
+                               <MaterialCommunityIcons name="share-outline" size={24} color="black" />
+                          </TouchableOpacity>
+                      </View>
+                      <Text>{item.likesCount}</Text>
+
+                  </View>
+
+ReactCOntextapi
+
+create StateProvider.js
+
+css beautiful header:
+box-shadow: 0px 5px 8px -9px rgba(0, 0, 0, 0.75);
+css beautiful input :
+.header__input {
+    display: flex;
+    align-items: center;
+    background-color: #eff2f5;
+    margin-left: 10px;
+    border-radius: 33px;
+    padding: 10px;
+  }
+  
+  .header__input > input {
+    border: none;
+    background-color: transparent;
+    outline-width: 0;
+  }
+
+
+header >> search and logo only
+sidebar >> ony icons
+app__body >>> scrolling right  and padding 30px 50px
+  
+
+
+
+use lazy import
+pwa asset generator
+offline.html
+manifest.json
+serviceWorker.js
+index.html >>> 

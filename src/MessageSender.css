@@ -1,0 +1,133 @@
+.messageSender {
+  display: flex;
+  margin-top: 30px;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0px 5px 7px -7px rgba(0, 0, 0, 0.75);
+  width: 100%;
+}
+
+.messageSender__top {
+  display: flex;
+  border-bottom: 1px solid #eff2f5;
+  padding: 15px;
+}
+
+.messageSender__top > form {
+  flex: 1;
+  display: flex;
+}
+
+.messageSender__top > form > input {
+  outline-width: 0;
+  border: none;
+  padding: 5px 20px;
+  margin: 0px 10px;
+  border-radius: 999px;
+  background-color: #eff2f5;
+}
+.messageSender__top > form > button {
+  display: none;
+}
+
+.messageSender__input {
+  flex: 1;
+}
+
+.messageSender__bottom {
+  display: flex;
+  justify-self: space-evenly;
+  justify-content: space-between;
+}
+
+.messageSender__option {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  color: gray;
+  margin: 5px;
+}
+
+.messageSender__option > h3 {
+  font-size: medium;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.messageSender__option:hover {
+  background-color: #eff2f5;
+  border-radius: 20px;
+}
+
+.messageSender__top {
+  display: flex;
+  flex-direction: column;
+}
+.messageSender__ainput {
+  padding: 15px;
+  width: 10px;
+}
+
+.messageSender__progress {
+  width: 100%;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  transition: transform 100ms ease-in;
+}
+.messageSender__progress:hover {
+  transform: scale(1.08);
+}
+
+@media (max-width: 910px) {
+  .messageSender__top {
+    display: flex;
+    /* justify-content: space-around; */
+    margin: 0 auto;
+    flex-direction: column;
+  }
+
+  .messageSender__top > form {
+    display: flex;
+    flex-direction: column;
+  }
+  .messageSender__top > .messageSender__avatar {
+    margin: 0 auto;
+    /* margin-bottom: 35px; */
+  }
+  .messageSender__top > form > input {
+    margin-top: 25px;
+    /* width: 75%; */
+    line-height: 35px;
+  }
+  .messageSender__top > form > button {
+    display: flex;
+    margin-top: 15px;
+    min-width: 100px;
+    background-color: #2e81f4;
+    color: #eff2f5;
+    font-weight: 800;
+  }
+
+  .messageSender__top > form > button:hover {
+    background-color: white;
+    color: #2e81f4;
+  }
+  .messageSender__bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .messageSender__progress {
+    width: 100%;
+    margin-top: 10px;
+    transition: transform 100ms ease-in;
+  }
+  .messageSender__progress:hover {
+    transform: scale(1.08);
+  }
+  .messageSender__top > form >input {
+    width: 75%;
+    margin-right: 10px
+  }
+}
